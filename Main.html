@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetCare Bangladesh 🐾</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ========== LOGIN PAGE ========== -->
+<div id="loginPage" class="login-page active">
+  <div class="login-bg-anim">
+    <div class="floating-pet" style="--d:0s;--x:5%;--s:1.2">🐶</div>
+    <div class="floating-pet" style="--d:1s;--x:15%;--s:0.8">🐱</div>
+    <div class="floating-pet" style="--d:2s;--x:30%;--s:1.4">🐰</div>
+    <div class="floating-pet" style="--d:0.5s;--x:45%;--s:0.9">🦜</div>
+    <div class="floating-pet" style="--d:1.5s;--x:60%;--s:1.1">🐟</div>
+    <div class="floating-pet" style="--d:3s;--x:75%;--s:0.7">🐹</div>
+    <div class="floating-pet" style="--d:2.5s;--x:88%;--s:1.3">🐕</div>
+    <div class="floating-pet" style="--d:4s;--x:22%;--s:0.6">🐈</div>
+    <div class="floating-pet" style="--d:1.8s;--x:55%;--s:1.0">🦎</div>
+    <div class="floating-pet" style="--d:3.5s;--x:70%;--s:0.85">🐢</div>
+    <div class="floating-pet paw" style="--d:0.3s;--x:8%;--s:0.5">🐾</div>
+    <div class="floating-pet paw" style="--d:2.1s;--x:42%;--s:0.4">🐾</div>
+    <div class="floating-pet paw" style="--d:3.8s;--x:80%;--s:0.6">🐾</div>
+  </div>
+  <div class="login-card">
+    <div class="login-logo">
+      <span class="logo-icon">🐾</span>
+      <h1 class="logo-text">PetCare<span>BD</span></h1>
+    </div>
+    <p class="login-tagline" data-en="Bangladesh's #1 Pet Care Platform" data-bn="বাংলাদেশের সেরা পেট কেয়ার প্ল্যাটফর্ম">Bangladesh's #1 Pet Care Platform</p>
+    <div class="lang-toggle-login">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('bn')">বাং</button>
+    </div>
+    <div class="login-form">
+      <div class="input-group">
+        <i class="fa fa-envelope"></i>
+        <input type="email" placeholder="Email / ইমেইল" id="loginEmail">
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" placeholder="Password / পাসওয়ার্ড" id="loginPass">
+      </div>
+      <button class="login-btn" onclick="doLogin()">
+        <span data-en="Login" data-bn="লগইন করুন">Login</span> 🐾
+      </button>
+      <div class="login-divider"><span data-en="or continue with" data-bn="অথবা">or continue with</span></div>
+      <div class="social-login">
+        <button class="social-btn google"><i class="fab fa-google"></i> Google</button>
+        <button class="social-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+      </div>
+      <p class="signup-link" data-en="New user? <a href='#'>Sign up free</a>" data-bn="নতুন ব্যবহারকারী? <a href='#'>বিনামূল্যে রেজিস্ট্রেশন করুন</a>">New user? <a href="#">Sign up free</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MAIN APP ========== -->
+<div id="mainApp" class="main-app hidden">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span>🐾</span>
+      <span class="nav-brand">PetCare<span>BD</span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link active" onclick="showSection('home')" data-en="Home" data-bn="হোম">Home</a>
+      <a class="nav-link" onclick="showSection('marketplace')" data-en="Marketplace" data-bn="মার্কেটপ্লেস">Marketplace</a>
+      <a class="nav-link" onclick="showSection('shop')" data-en="Pet Shop" data-bn="পেট শপ">Pet Shop</a>
+      <a class="nav-link" onclick="showSection('vet')" data-en="Vet Services" data-bn="ভেট সেবা">Vet Services</a>
+      <a class="nav-link" onclick="showSection('dashboard')" data-en="Dashboard" data-bn="ড্যাশবোর্ড">Dashboard</a>
+      <a class="nav-link" onclick="showSection('care')" data-en="Care Guide" data-bn="যত্ন গাইড">Care Guide</a>
+      <a class="nav-link" onclick="showSection('community')" data-en="Community" data-bn="কমিউনিটি">Community</a>
+      <a class="nav-link" onclick="showSection('lostfound')" data-en="Lost & Found" data-bn="হারিয়ে যাওয়া">Lost & Found</a>
+      <a class="nav-link" onclick="showSection('ai')" data-en="AI Assistant" data-bn="AI সহকারী">AI Assistant</a>
+      <a class="nav-link" onclick="showSection('cart')" data-en="Cart" data-bn="কার্ট">Cart 🛒<span class="cart-badge" id="cartBadge">0</span></a>
+    </div>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button onclick="setLang('en')" class="lang-btn-nav" id="btnEN">EN</button>
+        <button onclick="setLang('bn')" class="lang-btn-nav" id="btnBN">বাং</button>
+      </div>
+      <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+      <div class="user-avatar" onclick="showSection('dashboard')">
+        <span>👤</span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </nav>
+
+  <!-- ===== HOME SECTION ===== -->
+  <section id="sec-home" class="section active-section">
+    <div class="hero-banner">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span data-en="Welcome to" data-bn="স্বাগতম">Welcome to</span><br>
+          <span class="brand-big">PetCare Bangladesh 🐾</span>
+        </h1>
+        <p class="hero-sub" data-en="Your complete pet companion — marketplace, vets, shop & more!" data-bn="আপনার সম্পূর্ণ পেট সঙ্গী — মার্কেটপ্লেস, ভেট, শপ এবং আরও অনেক কিছু!">Your complete pet companion — marketplace, vets, shop & more!</p>
+        <div class="hero-btns">
+          <button class="hero-btn primary" onclick="showSection('marketplace')" data-en="Browse Pets" data-bn="পেট দেখুন">Browse Pets</button>
+          <button class="hero-btn secondary" onclick="showSection('vet')" data-en="Find a Vet" data-bn="ভেট খুঁজুন">Find a Vet</button>
+        </div>
+      </div>
+      <div class="hero-anim">
+        <div class="hero-pet-circle">
+          <span class="hero-pet spin1">🐶</span>
+          <span class="hero-pet spin2">🐱</span>
+          <span class="hero-pet spin3">🐰</span>
+          <span class="hero-pet-center">🐾</span>
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-card"><span class="stat-num">2,840</span><span class="stat-label" data-en="Pets Listed" data-bn="পেট তালিকাভুক্ত">Pets Listed</span></div>
+      <div class="stat-card"><span class="stat-num">148</span><span class="stat-label" data-en="Verified Vets" data-bn="যাচাইকৃত ভেট">Verified Vets</span></div>
+      <div class="stat-card"><span class="stat-num">12K+</span><span class="stat-label" data-en="Happy Owners" data-bn="সুখী মালিক">Happy Owners</span></div>
+      <div class="stat-card"><span class="stat-num">64</span><span class="stat-label" data-en="Districts Covered" data-bn="জেলা কভার্ড">Districts Covered</span></div>
+    </div>
+    <div class="section-title" data-en="Browse by Category" data-bn="ক্যাটাগরি অনুযায়ী দেখুন">Browse by Category</div>
+    <div class="category-chips">
+      <div class="chip" onclick="filterMarket('dog')"><span>🐶</span><span data-en="Dogs" data-bn="কুকুর">Dogs</span></div>
+      <div class="chip" onclick="filterMarket('cat')"><span>🐱</span><span data-en="Cats" data-bn="বিড়াল">Cats</span></div>
+      <div class="chip" onclick="filterMarket('bird')"><span>🦜</span><span data-en="Birds" data-bn="পাখি">Birds</span></div>
+      <div class="chip" onclick="filterMarket('fish')"><span>🐟</span><span data-en="Fish" data-bn="মাছ">Fish</span></div>
+      <div class="chip" onclick="filterMarket('rabbit')"><span>🐰</span><span data-en="Rabbits" data-bn="খরগোশ">Rabbits</span></div>
+      <div class="chip" onclick="filterMarket('other')"><span>🦎</span><span data-en="Exotic" data-bn="এক্সোটিক">Exotic</span></div>
+    </div>
+    <div class="section-title" data-en="Featured Pets" data-bn="বিশেষ পেট">Featured Pets</div>
+    <div class="cards-grid" id="featuredPets"></div>
+    <div class="section-title" data-en="Featured Products" data-bn="বিশেষ পণ্য">Featured Products</div>
+    <div class="cards-grid" id="featuredProducts"></div>
+  </section>
+
+  <!-- ===== MARKETPLACE SECTION ===== -->
+  <section id="sec-marketplace" class="section">
+    <div class="section-header">
+      <h2 class="section-title-lg" data-en="🐾 Pet Marketplace" data-bn="🐾 পেট মার্কেটপ্লেস">🐾 Pet Marketplace</h2>
+      <button class="cta-btn" onclick="openModal('listPetModal')" data-en="+ List Your Pet" data-bn="+ পেট তালিকাভুক্ত করুন">+ List Your Pet</button>
+    </div>
+    <div class="filter-bar">
+      <select id="filterType" onchange="applyFilters()">
+        <option value="" data-en="All Types" data-bn="সব ধরন">All Types</option>
+        <option value="dog" data-en="Dogs" data-bn="কুকুর">Dogs</option>
+        <option value="cat" data-en="Cats" data-bn="বিড়াল">Cats</option>
+        <option value="bird" data-en="Birds" data-bn="পাখি">Birds</option>
+        <option value="fish" data-en="Fish" data-bn="মাছ">Fish</option>
+        <option value="rabbit" data-en="Rabbits" data-bn="খরগোশ">Rabbits</option>
+      </select>
+      <select id="filterPrice" onchange="applyFilters()">
+        <option value="" data-en="Any Price" data-bn="যেকোনো মূল্য">Any Price</option>
+        <option value="low" data-en="Under ৳5,000" data-bn="৳৫,০০০ এর নিচে">Under ৳5,000</option>
+        <option value="mid" data-en="৳5,000–৳20,000" data-bn="৳৫,০০০–৳২০,০০০">৳5,000–৳20,000</option>
+        <option value="high" data-en="Above ৳20,000" data-bn="৳২০,০০০ এর উপরে">Above ৳20,000</option>
+      </select>
+      <select id="filterLocation" onchange="applyFilters()">
+        <option value="" data-en="All Locations" data-bn="সব এলাকা">All Locations</option>
+        <option value="Dhaka">Dhaka / ঢাকা</option>
+        <option value="Chittagong">Chittagong / চট্টগ্রাম</option>
+        <option value="Sylhet">Sylhet / সিলেট</option>
+        <option value="Rajshahi">Rajshahi / রাজশাহী</option>
+        <option value="Khulna">Khulna / খুলনা</option>
+      </select>
+      <select id="filterSort" onchange="applyFilters()">
+        <option value="newest" data-en="Newest First" data-bn="নতুন প্রথমে">Newest First</option>
+        <option value="price-low" data-en="Price: Low to High" data-bn="মূল্য: কম থেকে বেশি">Price: Low to High</option>
+        <option value="price-high" data-en="Price: High to Low" data-bn="মূল্য: বেশি থেকে কম">Price: High to Low</option>
+      </select>
+    </div>
+    <div class="cards-grid" id="marketplaceGrid"></div>
+  </section>
+
+  <!-- ===== PET SHOP SECTION ===== -->
+  <section id="sec-shop" class="section">
+    <h2 class="section-title-lg" data-en="🛍️ Pet Shop" data-bn="🛍️ পেট শপ">🛍️ Pet Shop</h2>
+    <div class="shop-anim-banner">
+      <span class="shop-anim-pet">🦴</span><span class="shop-anim-pet">🐾</span><span class="shop-anim-pet">🧸</span><span class="shop-anim-pet">🐟</span><span class="shop-anim-pet">🍖</span>
+    </div>
+    <div class="section-title" data-en="🥩 Pet Food" data-bn="🥩 পেট খাবার">🥩 Pet Food</div>
+    <div class="cards-grid" id="foodGrid"></div>
+    <div class="section-title" data-en="🧸 Toys & Accessories" data-bn="🧸 খেলনা ও আনুষাঙ্গিক">🧸 Toys & Accessories</div>
+    <div class="cards-grid" id="toysGrid"></div>
+  </section>
+
+  <!-- ===== VET SERVICES SECTION ===== -->
+  <section id="sec-vet" class="section">
+    <h2 class="section-title-lg" data-en="🩺 Vet Services" data-bn="🩺 ভেটেরিনারি সেবা">🩺 Vet Services</h2>
+    <div class="vet-top-anim">
+      <div class="vet-hero-cartoon">
+        <div class="vet-character">👨‍⚕️</div>
+        <div class="vet-pets-around">
+          <span class="vet-pet-small float1">🐶</span>
+          <span class="vet-pet-small float2">🐱</span>
+          <span class="vet-pet-small float3">🐰</span>
+          <span class="vet-pet-small float4">🦜</span>
+        </div>
+        <div class="vet-steth">🩺</div>
+      </div>
+      <div class="vet-info-box">
+        <h3 data-en="Expert Vets Across Bangladesh" data-bn="সারা বাংলাদেশে বিশেষজ্ঞ ভেট">Expert Vets Across Bangladesh</h3>
+        <p data-en="Book online appointments, video calls or emergency visits from any district." data-bn="যেকোনো জেলা থেকে অনলাইন অ্যাপয়েন্টমেন্ট, ভিডিও কল বা জরুরি ভিজিট বুক করুন।">Book online appointments, video calls or emergency visits from any district.</p>
+        <div class="emergency-bar">
+          <span class="emergency-pulse"></span>
+          <span data-en="🚨 Emergency Hotline: 16789" data-bn="🚨 জরুরি হটলাইন: ১৬৭৮৯">🚨 Emergency Hotline: 16789</span>
+        </div>
+      </div>
+    </div>
+    <div class="search-bar-vet">
+      <i class="fas fa-search"></i>
+      <input type="text" id="vetSearch" placeholder="Search by name, specialty, district..." oninput="filterVets()" data-en-placeholder="Search by name, specialty, district..." data-bn-placeholder="নাম, বিশেষত্ব, জেলা দিয়ে খুঁজুন...">
+    </div>
+    <div class="vet-filter-chips" id="vetFilterChips">
+      <span class="vchip active" onclick="filterVetType('all')" data-en="All" data-bn="সব">All</span>
+      <span class="vchip" onclick="filterVetType('dhaka')" data-en="Dhaka" data-bn="ঢাকা">Dhaka</span>
+      <span class="vchip" onclick="filterVetType('chittagong')" data-en="Chittagong" data-bn="চট্টগ্রাম">Chittagong</span>
+      <span class="vchip" onclick="filterVetType('sylhet')" data-en="Sylhet" data-bn="সিলেট">Sylhet</span>
+      <span class="vchip" onclick="filterVetType('rajshahi')" data-en="Rajshahi" data-bn="রাজশাহী">Rajshahi</span>
+      <span class="vchip" onclick="filterVetType('khulna')" data-en="Khulna" data-bn="খুলনা">Khulna</span>
+      <span class="vchip" onclick="filterVetType('online')" data-en="Online Only" data-bn="শুধু অনলাইন">Online Only</span>
+    </div>
+    <div class="vet-grid" id="vetGrid"></div>
+  </section>
+
+  <!-- ===== DASHBOARD SECTION ===== -->
+  <section id="sec-dashboard" class="section">
+    <h2 class="section-title-lg" data-en="📊 My Dashboard" data-bn="📊 আমার ড্যাশবোর্ড">📊 My Dashboard</h2>
+    <div class="dashboard-grid">
+      <div class="dash-card pet-profile-card">
+        <div class="pet-profile-anim">
+          <div class="pet-avatar-big">🐶</div>
+          <div class="pet-info">
+            <h3>Buddy</h3>
+            <p data-en="Golden Retriever • 3 years" data-bn="গোল্ডেন রিট্রিভার • ৩ বছর">Golden Retriever • 3 years</p>
+            <div class="pet-tags"><span class="ptag">Male</span><span class="ptag">Vaccinated ✓</span></div>
+          </div>
+        </div>
+        <div class="health-bars">
+          <div class="hbar-row"><span data-en="Health" data-bn="স্বাস্থ্য">Health</span><div class="hbar"><div class="hbar-fill" style="--w:85%;--c:#4ade80" data-width="85%"></div></div><span>85%</span></div>
+          <div class="hbar-row"><span data-en="Activity" data-bn="কার্যক্রম">Activity</span><div class="hbar"><div class="hbar-fill" style="--w:70%;--c:#60a5fa" data-width="70%"></div></div><span>70%</span></div>
+          <div class="hbar-row"><span data-en="Nutrition" data-bn="পুষ্টি">Nutrition</span><div class="hbar"><div class="hbar-fill" style="--w:90%;--c:#f59e0b" data-width="90%"></div></div><span>90%</span></div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <h3 class="dash-card-title" data-en="✅ Daily Checklist" data-bn="✅ দৈনিক চেকলিস্ট">✅ Daily Checklist</h3>
+        <div class="checklist" id="checklist">
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Morning walk" data-bn="সকালের হাঁটা">Morning walk</span></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Breakfast served" data-bn="নাস্তা দেওয়া">Breakfast served</span></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Fresh water" data-bn="তাজা পানি">Fresh water</span></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Evening play time" data-bn="সন্ধ্যার খেলার সময়">Evening play time</span></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Grooming check" data-bn="গ্রুমিং চেক">Grooming check</span></label>
+          <label class="check-item"><input type="checkbox" onchange="updateProgress()"><span data-en="Medicine given" data-bn="ওষুধ দেওয়া">Medicine given</span></label>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="dailyProgress"></div>
+          <span id="progressLabel">0 / 6 done</span>
+        </div>
+      </div>
+      <div class="dash-card reminders-card">
+        <h3 class="dash-card-title" data-en="🔔 Reminders" data-bn="🔔 রিমাইন্ডার">🔔 Reminders</h3>
+        <div class="reminder-list">
+          <div class="reminder-item urgent"><span class="r-icon">💉</span><div><p data-en="Rabies vaccine due" data-bn="জলাতঙ্ক টিকা বাকি">Rabies vaccine due</p><small data-en="Tomorrow" data-bn="আগামীকাল">Tomorrow</small></div></div>
+          <div class="reminder-item"><span class="r-icon">🩺</span><div><p data-en="Vet checkup" data-bn="ভেট চেকআপ">Vet checkup</p><small>May 15, 2026</small></div></div>
+          <div class="reminder-item"><span class="r-icon">🛁</span><div><p data-en="Bath time" data-bn="গোসলের সময়">Bath time</p><small>May 10, 2026</small></div></div>
+        </div>
+      </div>
+      <div class="dash-card order-history-card">
+        <h3 class="dash-card-title" data-en="📦 Order History" data-bn="📦 অর্ডার ইতিহাস">📦 Order History</h3>
+        <table class="order-table">
+          <thead><tr><th data-en="Item" data-bn="পণ্য">Item</th><th data-en="Date" data-bn="তারিখ">Date</th><th data-en="Status" data-bn="স্ট্যাটাস">Status</th></tr></thead>
+          <tbody>
+            <tr><td data-en="Royal Canin Dog Food" data-bn="রয়্যাল ক্যানিন ডগ ফুড">Royal Canin Dog Food</td><td>Apr 30</td><td><span class="status delivered" data-en="Delivered" data-bn="ডেলিভারড">Delivered</span></td></tr>
+            <tr><td data-en="Chew Toy Bundle" data-bn="চিউ টয় বান্ডেল">Chew Toy Bundle</td><td>May 2</td><td><span class="status transit" data-en="In Transit" data-bn="পথে">In Transit</span></td></tr>
+            <tr><td data-en="Flea Collar" data-bn="ফ্লিয়া কলার">Flea Collar</td><td>May 5</td><td><span class="status pending" data-en="Pending" data-bn="অপেক্ষায়">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CARE GUIDE SECTION ===== -->
+  <section id="sec-care" class="section">
+    <h2 class="section-title-lg" data-en="📚 Pet Care Guide" data-bn="📚 পেট কেয়ার গাইড">📚 Pet Care Guide</h2>
+    <div class="care-anim-row">
+      <span class="care-pet-float" style="--d:0s">🐶</span>
+      <span class="care-pet-float" style="--d:0.5s">🐱</span>
+      <span class="care-pet-float" style="--d:1s">🦜</span>
+      <span class="care-pet-float" style="--d:1.5s">🐟</span>
+    </div>
+    <div class="section-title" data-en="🕐 Feeding Schedule" data-bn="🕐 খাওয়ানোর সময়সূচি">🕐 Feeding Schedule</div>
+    <div class="feeding-table">
+      <div class="feed-row head"><span data-en="Time" data-bn="সময়">Time</span><span data-en="Dogs" data-bn="কুকুর">Dogs</span><span data-en="Cats" data-bn="বিড়াল">Cats</span><span data-en="Birds" data-bn="পাখি">Birds</span><span data-en="Fish" data-bn="মাছ">Fish</span></div>
+      <div class="feed-row"><span>🌅 6AM</span><span data-en="Dry kibble" data-bn="শুকনো কিবল">Dry kibble</span><span data-en="Wet food" data-bn="ভেজা খাবার">Wet food</span><span data-en="Seeds mix" data-bn="বীজ মিশ্রণ">Seeds mix</span><span data-en="Flakes" data-bn="ফ্লেকস">Flakes</span></div>
+      <div class="feed-row alt"><span>☀️ 12PM</span><span data-en="Cooked rice+meat" data-bn="রান্না ভাত+মাংস">Cooked rice+meat</span><span data-en="Dry kibble" data-bn="শুকনো কিবল">Dry kibble</span><span data-en="Fruits" data-bn="ফল">Fruits</span><span data-en="Skip" data-bn="বাদ">Skip</span></div>
+      <div class="feed-row"><span>🌆 6PM</span><span data-en="Dinner + treats" data-bn="রাতের খাবার + ট্রিট">Dinner + treats</span><span data-en="Wet food" data-bn="ভেজা খাবার">Wet food</span><span data-en="Pellets" data-bn="পেলেট">Pellets</span><span data-en="Flakes" data-bn="ফ্লেকস">Flakes</span></div>
+    </div>
+    <div class="care-cards-grid" id="careCards"></div>
+  </section>
+
+  <!-- ===== COMMUNITY SECTION ===== -->
+  <section id="sec-community" class="section">
+    <h2 class="section-title-lg" data-en="💬 Pet Community" data-bn="💬 পেট কমিউনিটি">💬 Pet Community</h2>
+    <div class="community-layout">
+      <div class="posts-column" id="postsColumn"></div>
+      <div class="community-sidebar">
+        <div class="sidebar-card">
+          <h4 data-en="🔥 Trending Pets" data-bn="🔥 ট্রেন্ডিং পেট">🔥 Trending Pets</h4>
+          <div class="trending-list">
+            <div class="trend-item"><span>🐶</span><span data-en="Golden Retriever" data-bn="গোল্ডেন রিট্রিভার">Golden Retriever</span><span class="trend-count">+142</span></div>
+            <div class="trend-item"><span>🐱</span><span data-en="Persian Cat" data-bn="পার্সিয়ান বিড়াল">Persian Cat</span><span class="trend-count">+98</span></div>
+            <div class="trend-item"><span>🦜</span><span data-en="Love Bird" data-bn="লাভ বার্ড">Love Bird</span><span class="trend-count">+67</span></div>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h4 data-en="🏆 Top Owners" data-bn="🏆 সেরা মালিক">🏆 Top Owners</h4>
+          <div class="top-owners" id="topOwners"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOST & FOUND SECTION ===== -->
+  <section id="sec-lostfound" class="section">
+    <h2 class="section-title-lg" data-en="🔍 Lost & Found" data-bn="🔍 হারিয়ে যাওয়া পেট">🔍 Lost & Found</h2>
+    <div class="lf-tabs">
+      <button class="lf-tab active" onclick="showLFTab('lost')" data-en="😢 Lost Pets" data-bn="😢 হারানো পেট">😢 Lost Pets</button>
+      <button class="lf-tab" onclick="showLFTab('found')" data-en="😊 Found Pets" data-bn="😊 পাওয়া পেট">😊 Found Pets</button>
+    </div>
+    <div class="cards-grid" id="lfGrid"></div>
+    <button class="cta-btn center-btn" onclick="openModal('reportLFModal')" data-en="+ Report Lost/Found Pet" data-bn="+ হারানো/পাওয়া পেট রিপোর্ট করুন">+ Report Lost/Found Pet</button>
+  </section>
+
+  <!-- ===== AI ASSISTANT SECTION ===== -->
+  <section id="sec-ai" class="section">
+    <h2 class="section-title-lg" data-en="🤖 AI Pet Assistant" data-bn="🤖 AI পেট সহকারী">🤖 AI Pet Assistant</h2>
+    <div class="ai-layout">
+      <div class="ai-chat-box">
+        <div class="ai-header-anim">
+          <div class="ai-bot-face">🤖</div>
+          <div class="ai-bot-info">
+            <h3 data-en="PetBot — Your Smart Pet Advisor" data-bn="পেটবট — আপনার স্মার্ট পেট উপদেষ্টা">PetBot — Your Smart Pet Advisor</h3>
+            <span class="ai-online" data-en="Online • Ready to help" data-bn="অনলাইন • সাহায্য করতে প্রস্তুত">Online • Ready to help</span>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg bot">
+            <span class="chat-avatar">🤖</span>
+            <div class="chat-bubble" data-en="Hello! I'm PetBot 🐾 How can I help you today?" data-bn="হ্যালো! আমি পেটবট 🐾 আজ আমি কীভাবে সাহায্য করতে পারি?">Hello! I'm PetBot 🐾 How can I help you today?</div>
+          </div>
+        </div>
+        <div class="preset-prompts">
+          <button class="preset" onclick="sendPreset(this)" data-en="What should I feed my dog?" data-bn="আমার কুকুরকে কী খাওয়াব?">What should I feed my dog?</button>
+          <button class="preset" onclick="sendPreset(this)" data-en="My cat isn't eating, why?" data-bn="আমার বিড়াল খাচ্ছে না কেন?">My cat isn't eating, why?</button>
+          <button class="preset" onclick="sendPreset(this)" data-en="Best vet in Dhaka?" data-bn="ঢাকায় সেরা ভেট?">Best vet in Dhaka?</button>
+          <button class="preset" onclick="sendPreset(this)" data-en="Vaccinations schedule" data-bn="টিকা সময়সূচি">Vaccinations schedule</button>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="Ask anything about pets..." data-en-placeholder="Ask anything about pets..." data-bn-placeholder="পেট সম্পর্কে যেকোনো প্রশ্ন করুন...">
+          <button onclick="sendChat()">Send 🐾</button>
+        </div>
+      </div>
+      <div class="pet-matchmaker-box">
+        <h3 data-en="🐾 Pet Matchmaker" data-bn="🐾 পেট ম্যাচমেকার">🐾 Pet Matchmaker</h3>
+        <p data-en="Find your perfect pet based on your lifestyle!" data-bn="আপনার জীবনধারা অনুযায়ী সঠিক পেট খুঁজুন!">Find your perfect pet based on your lifestyle!</p>
+        <div class="matchmaker-form">
+          <label data-en="Living Space" data-bn="বাসস্থান">Living Space</label>
+          <select id="mmSpace">
+            <option value="small" data-en="Small Apartment" data-bn="ছোট অ্যাপার্টমেন্ট">Small Apartment</option>
+            <option value="medium" data-en="Medium House" data-bn="মাঝারি বাড়ি">Medium House</option>
+            <option value="large" data-en="Large House with Yard" data-bn="বড় বাড়ি উঠান সহ">Large House with Yard</option>
+          </select>
+          <label data-en="Activity Level" data-bn="কার্যকলাপের মাত্রা">Activity Level</label>
+          <select id="mmActivity">
+            <option value="low" data-en="Low (mostly indoors)" data-bn="কম (বেশিরভাগ ঘরে)">Low (mostly indoors)</option>
+            <option value="medium" data-en="Medium (daily walks)" data-bn="মাঝারি (দৈনিক হাঁটা)">Medium (daily walks)</option>
+            <option value="high" data-en="High (very active)" data-bn="বেশি (খুব সক্রিয়)">High (very active)</option>
+          </select>
+          <label data-en="Monthly Budget (৳)" data-bn="মাসিক বাজেট (৳)">Monthly Budget (৳)</label>
+          <select id="mmBudget">
+            <option value="low" data-en="Under ৳2,000" data-bn="৳২,০০০ এর নিচে">Under ৳2,000</option>
+            <option value="mid" data-en="৳2,000–৳8,000" data-bn="৳২,০০০–৳৮,০০০">৳2,000–৳8,000</option>
+            <option value="high" data-en="Above ৳8,000" data-bn="৳৮,০০০ এর উপরে">Above ৳8,000</option>
+          </select>
+          <button class="match-btn" onclick="runMatchmaker()"><span data-en="Find My Match! 🐾" data-bn="আমার মিল খুঁজুন! 🐾">Find My Match! 🐾</span></button>
+          <div class="match-result" id="matchResult"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CART SECTION ===== -->
+  <section id="sec-cart" class="section">
+    <h2 class="section-title-lg" data-en="🛒 Your Cart" data-bn="🛒 আপনার কার্ট">🛒 Your Cart</h2>
+    <div class="cart-layout">
+      <div class="cart-items" id="cartItems">
+        <div class="empty-cart" data-en="Your cart is empty! Start shopping 🐾" data-bn="আপনার কার্ট খালি! কেনাকাটা শুরু করুন 🐾">Your cart is empty! Start shopping 🐾</div>
+      </div>
+      <div class="order-summary">
+        <h3 data-en="Order Summary" data-bn="অর্ডার সারসংক্ষেপ">Order Summary</h3>
+        <div class="summary-row"><span data-en="Subtotal" data-bn="সাবটোটাল">Subtotal</span><span id="cartSubtotal">৳0</span></div>
+        <div class="summary-row"><span data-en="Delivery" data-bn="ডেলিভারি">Delivery</span><span>৳60</span></div>
+        <div class="summary-row total"><span data-en="Total" data-bn="মোট">Total</span><span id="cartTotal">৳60</span></div>
+        <div class="ssl-badge">🔒 <span data-en="Secure Payment via SSLCommerz" data-bn="SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট">Secure Payment via SSLCommerz</span></div>
+        <button class="checkout-btn" onclick="checkout()" data-en="Proceed to Checkout" data-bn="চেকআউটে যান">Proceed to Checkout</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end mainApp -->
+
+<!-- ========== MODALS ========== -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
+
+  <!-- Appointment Modal -->
+  <div id="appointmentModal" class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title" data-en="📅 Book Appointment" data-bn="📅 অ্যাপয়েন্টমেন্ট বুক করুন">📅 Book Appointment</h3>
+    <div class="modal-vet-info" id="appointmentVetInfo"></div>
+    <div class="modal-form">
+      <input type="text" placeholder="Your Name / আপনার নাম"><br>
+      <input type="text" placeholder="Pet Name / পেটের নাম"><br>
+      <input type="date"><br>
+      <select><option data-en="Online Video Call" data-bn="অনলাইন ভিডিও কল">Online Video Call</option><option data-en="In-person Visit" data-bn="সশরীরে ভিজিট">In-person Visit</option></select><br>
+      <textarea placeholder="Describe the issue / সমস্যা বর্ণনা করুন" rows="3"></textarea>
+      <button class="modal-btn" onclick="bookAppointment()" data-en="Confirm Booking" data-bn="বুকিং নিশ্চিত করুন">Confirm Booking</button>
+    </div>
+  </div>
+
+  <!-- List Pet Modal -->
+  <div id="listPetModal" class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title" data-en="🐾 List Your Pet" data-bn="🐾 আপনার পেট তালিকাভুক্ত করুন">🐾 List Your Pet</h3>
+    <div class="modal-form">
+      <input type="text" placeholder="Pet Name / পেটের নাম"><br>
+      <select><option>Dog / কুকুর</option><option>Cat / বিড়াল</option><option>Bird / পাখি</option><option>Fish / মাছ</option><option>Rabbit / খরগোশ</option></select><br>
+      <input type="text" placeholder="Breed / জাত"><br>
+      <input type="number" placeholder="Price (৳) / মূল্য"><br>
+      <input type="text" placeholder="Location / এলাকা"><br>
+      <input type="text" placeholder="Contact Number / যোগাযোগ নম্বর"><br>
+      <textarea rows="3" placeholder="Description / বিবরণ"></textarea>
+      <button class="modal-btn" data-en="Submit Listing" data-bn="তালিকা জমা দিন">Submit Listing</button>
+    </div>
+  </div>
+
+  <!-- Report Lost/Found Modal -->
+  <div id="reportLFModal" class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 class="modal-title" data-en="Report Lost/Found Pet" data-bn="হারানো/পাওয়া পেট রিপোর্ট">Report Lost/Found Pet</h3>
+    <div class="modal-form">
+      <select><option data-en="Lost Pet" data-bn="হারানো পেট">Lost Pet</option><option data-en="Found Pet" data-bn="পাওয়া পেট">Found Pet</option></select><br>
+      <input type="text" placeholder="Pet Type & Description"><br>
+      <input type="text" placeholder="Last seen location / এলাকা"><br>
+      <input type="text" placeholder="Contact Number / নম্বর"><br>
+      <button class="modal-btn" data-en="Submit Report" data-bn="রিপোর্ট জমা দিন">Submit Report</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
